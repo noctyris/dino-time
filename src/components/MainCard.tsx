@@ -1,6 +1,6 @@
-import { Dino } from '@/types';
+import { Dino } from "@/types";
 
-export default function MainCard({dino}: {Dino}) {
+export default function MainCard({dino}: {dino: Dino} ) {
   return (
     <>
       <p>{dino.nom}</p>
