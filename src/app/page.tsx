@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { fetchData } from "@/app/lib/data";
+import { fetchData } from "@/lib/data";
 import MainCard from "@/components/MainCard";
 import { Dino } from "@/types";
 
