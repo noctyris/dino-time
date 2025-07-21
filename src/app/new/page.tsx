@@ -4,8 +4,8 @@ import { useState } from "react";
 
 export default function Page() {
   const [nom,setNom] = useState("");
-  const [taille,setTaille] = useState<number>("");
-  const [poids,setPoids] = useState<number>("");
+  const [taille,setTaille] = useState<number>();
+  const [poids,setPoids] = useState<number>();
   const [region,setRegion] = useState("");
   const [periodeDebut,setPeriodeDebut] = useState("");
   const [periodeFin,setPeriodeFin] = useState("");
@@ -55,8 +55,8 @@ export default function Page() {
     <div className="flex justify-center items-center w-full">
       <form onSubmit={handleSubmit} className="flex flex-col h-fit w-fit gap-2">
         <input value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Nom" className="border-b" required />
-        <input value={taille} type="number" onChange={(e) => setTaille(e.target.value)} placeholder="Taille" className="border-b" required />
-        <input value={poids} type="number" onChange={(e) => setPoids(e.target.value)} placeholder="Poids" className="border-b" required />
+        <input value={taille} type="number" onChange={(e) => setTaille(e.target.value === '' ? undefined : parseFloat(e.target.value))} placeholder="Taille" className="border-b" required />
+        <input value={poids} type="number" onChange={(e) => setPoids(e.target.value === '' ? undefined : parseFloat(e.target.value))} placeholder="Poids" className="border-b" required />
         <input value={region} onChange={(e) => setRegion(e.target.value)} placeholder="Region" className="border-b" required />
         <input value={periodeDebut} onChange={(e) => setPeriodeDebut(e.target.value)} placeholder="Début de la période de vie" className="border-b" required />
         <input value={periodeFin} onChange={(e) => setPeriodeFin(e.target.value)} placeholder="Fin de la période de vie" className="border-b" required />
