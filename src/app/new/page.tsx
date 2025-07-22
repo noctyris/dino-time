@@ -255,7 +255,7 @@ export default function Page() {
               key={index}
               className="flex gap-2 items-center w-full justify-between"
             >
-              <label label={`cousin-${index}`} htmlFor={`cousin-${index}`}>Cousin n°{index}</label>
+              <label htmlFor={`cousin-${index}`}>Cousin n°{index}</label>
               <input
                 value={c}
                 onChange={(e) => updateList(index, setCousins, e.target.value)}
