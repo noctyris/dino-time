@@ -3,42 +3,59 @@
 import { useState, Dispatch, SetStateAction } from "react";
 
 export default function Page() {
-  const [nom,setNom] = useState("");
-  const [taille,setTaille] = useState<number>();
-  const [poids,setPoids] = useState<number>();
-  const [region,setRegion] = useState("");
-  const [periodeDebut,setPeriodeDebut] = useState("");
-  const [periodeFin,setPeriodeFin] = useState("");
-  const [cousins,setCousins] = useState<string[]>([]);
-  const [especesInf,setEspecesInf] = useState<string[]>([]);
-  const [regime,setRegime] = useState("");
-  const [anneeDecouv,setAnneeDecouv] = useState("");
-  const [ethymologie,setEthymologie] = useState("");
-  const [superOrdre,setSuperOrdre] = useState("");
-  const [ordre,setOrdre] = useState("");
-  const [sousOrdre,setSousOrdre] = useState("");
-  const [infraOrdre,setInfraOrdre] = useState("");
-  const [microOrdre,setMicroOrdre] = useState("");
-  const [superFamille,setSuperFamille] = useState("");
-  const [famille,setFamille] = useState("");
-  const [sousFamille,setSousFamille] = useState("");
-  const [tribu,setTribu] = useState("");
-  const [genre,setGenre] = useState("");
-  const [clade,setClade] = useState("");
-  const [status,setStatus] = useState("");
+  const [nom, setNom] = useState("");
+  const [taille, setTaille] = useState<number>();
+  const [poids, setPoids] = useState<number>();
+  const [region, setRegion] = useState("");
+  const [periodeDebut, setPeriodeDebut] = useState("");
+  const [periodeFin, setPeriodeFin] = useState("");
+  const [cousins, setCousins] = useState<string[]>([]);
+  const [especesInf, setEspecesInf] = useState<string[]>([]);
+  const [regime, setRegime] = useState("");
+  const [anneeDecouv, setAnneeDecouv] = useState("");
+  const [ethymologie, setEthymologie] = useState("");
+  const [superOrdre, setSuperOrdre] = useState("");
+  const [ordre, setOrdre] = useState("");
+  const [sousOrdre, setSousOrdre] = useState("");
+  const [infraOrdre, setInfraOrdre] = useState("");
+  const [microOrdre, setMicroOrdre] = useState("");
+  const [superFamille, setSuperFamille] = useState("");
+  const [famille, setFamille] = useState("");
+  const [sousFamille, setSousFamille] = useState("");
+  const [tribu, setTribu] = useState("");
+  const [genre, setGenre] = useState("");
+  const [clade, setClade] = useState("");
+  const [status, setStatus] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
       const res = await fetch("/api/new-entry", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nom, taille, poids, region, periode_debut: periodeDebut, periode_fin: periodeFin,
-          cousins, especes_inf: especesInf, regime, annee_decouv: anneeDecouv, ethymologie,
-          super_ordre: superOrdre, ordre, sous_ordre: sousOrdre, infra_ordre: infraOrdre,
-          micro_ordre: microOrdre, super_famille: superFamille, famille,
-          sous_famille: sousFamille, tribu, genre, clade
+          nom,
+          taille,
+          poids,
+          region,
+          periode_debut: periodeDebut,
+          periode_fin: periodeFin,
+          cousins,
+          especes_inf: especesInf,
+          regime,
+          annee_decouv: anneeDecouv,
+          ethymologie,
+          super_ordre: superOrdre,
+          ordre,
+          sous_ordre: sousOrdre,
+          infra_ordre: infraOrdre,
+          micro_ordre: microOrdre,
+          super_famille: superFamille,
+          famille,
+          sous_famille: sousFamille,
+          tribu,
+          genre,
+          clade,
         }),
       });
       if (!res.ok) throw new Error("Failed to submit to new-entry API");
@@ -51,61 +68,256 @@ export default function Page() {
     }
   }
 
-  function updateList(index: number, set: Dispatch<SetStateAction<string[]>>, value: string) {
+  function updateList(
+    index: number,
+    set: Dispatch<SetStateAction<string[]>>,
+    value: string,
+  ) {
     set((prev: string[]) => {
-      const updated = [ ...prev ];
+      const updated = [...prev];
       updated[index] = value;
       return updated;
-    })
+    });
   }
-  function removeFromList(index: number, set: Dispatch<SetStateAction<string[]>>) {
-    set((prev: string[]) => prev.filter((_,i) => i!=index));
+  function removeFromList(
+    index: number,
+    set: Dispatch<SetStateAction<string[]>>,
+  ) {
+    set((prev: string[]) => prev.filter((_, i) => i != index));
   }
 
   return (
     <div className="flex justify-center items-center w-full">
       <form onSubmit={handleSubmit} className="flex flex-col h-fit w-fit gap-2">
-        <input value={nom} onChange={(e) => setNom(e.target.value)} placeholder="Nom" className="border-b" required />
-        <input value={taille !== undefined ? taille : ""} type="number" onChange={(e) => setTaille(e.target.value === '' ? undefined : parseFloat(e.target.value))} placeholder="Taille" className="border-b" required />
-        <input value={poids !== undefined ? poids : ""} type="number" onChange={(e) => setPoids(e.target.value === '' ? undefined : parseFloat(e.target.value))} placeholder="Poids" className="border-b" required />
-        <input value={region} onChange={(e) => setRegion(e.target.value)} placeholder="Region" className="border-b" required />
-        <input value={periodeDebut} onChange={(e) => setPeriodeDebut(e.target.value)} placeholder="Début de la période de vie" className="border-b" required />
-        <input value={periodeFin} onChange={(e) => setPeriodeFin(e.target.value)} placeholder="Fin de la période de vie" className="border-b" required />
-        <input value={regime} onChange={(e) => setRegime(e.target.value)} placeholder="Régime" className="border-b" required />
-        <input value={anneeDecouv} type="date" onChange={(e) => setAnneeDecouv(e.target.value)} placeholder="Année de découverte" className="border-b" required />
-        <input value={ethymologie} onChange={(e) => setEthymologie(e.target.value)} placeholder="Ethymologie" className="border-b" required />
-        <input value={superOrdre} onChange={(e) => setSuperOrdre(e.target.value)} placeholder="Super ordre" className="border-b" />
-        <input value={ordre} onChange={(e) => setOrdre(e.target.value)} placeholder="Ordre" className="border-b" />
-        <input value={sousOrdre} onChange={(e) => setSousOrdre(e.target.value)} placeholder="Sous ordre" className="border-b" />
-        <input value={infraOrdre} onChange={(e) => setInfraOrdre(e.target.value)} placeholder="Infra ordre" className="border-b" />
-        <input value={microOrdre} onChange={(e) => setMicroOrdre(e.target.value)} placeholder="Micro ordre" className="border-b" />
-        <input value={superFamille} onChange={(e) => setSuperFamille(e.target.value)} placeholder="Super famille" className="border-b" />
-        <input value={famille} onChange={(e) => setFamille(e.target.value)} placeholder="Famille" className="border-b" />
-        <input value={sousFamille} onChange={(e) => setSousFamille(e.target.value)} placeholder="Sous famille" className="border-b" />
-        <input value={tribu} onChange={(e) => setTribu(e.target.value)} placeholder="Tribu" className="border-b" />
-        <input value={genre} onChange={(e) => setGenre(e.target.value)} placeholder="Genre" className="border-b" />
-        <input value={clade} onChange={(e) => setClade(e.target.value)} placeholder="Clade" className="border-b" />
+        <label forhtml="nom">Nom</label>
+        <input
+          value={nom}
+          onChange={(e) => setNom(e.target.value)}
+          id="nom"
+          className="border-b"
+          required
+        />
+        <label forhtml="taille">Taille</label>
+        <input
+          value={taille !== undefined ? taille : ""}
+          type="number"
+          onChange={(e) =>
+            setTaille(
+              e.target.value === "" ? undefined : parseFloat(e.target.value),
+            )
+          }
+          id="taille"
+          className="border-b"
+          required
+        />
+        <label forhtml="poids">Poids</label>
+        <input
+          value={poids !== undefined ? poids : ""}
+          type="number"
+          onChange={(e) =>
+            setPoids(
+              e.target.value === "" ? undefined : parseFloat(e.target.value),
+            )
+          }
+          id="poids"
+          className="border-b"
+          required
+        />
+        <label forhtml="region">Region</label>
+        <input
+          value={region}
+          onChange={(e) => setRegion(e.target.value)}
+          id="region"
+          className="border-b"
+          required
+        />
+        <label forhtml="periodeDebut">Début de la période</label>
+        <input
+          value={periodeDebut}
+          onChange={(e) => setPeriodeDebut(e.target.value)}
+          id="periodeDebut"
+          className="border-b"
+          required
+        />
+        <label forhtml="periodeFin">Fin de la période</label>
+        <input
+          value={periodeFin}
+          onChange={(e) => setPeriodeFin(e.target.value)}
+          id="periodeFin"
+          className="border-b"
+          required
+        />
+        <label forhtml="regime">Régime</label>
+        <input
+          value={regime}
+          onChange={(e) => setRegime(e.target.value)}
+          id="regime"
+          className="border-b"
+          required
+        />
+        <label forhtml="anneeDecouv">Année de découverte</label>
+        <input
+          value={anneeDecouv}
+          type="date"
+          onChange={(e) => setAnneeDecouv(e.target.value)}
+          id="anneeDecouv"
+          className="border-b"
+          required
+        />
+        <label forhtml="ethymologie">Ethymologie</label>
+        <input
+          value={ethymologie}
+          onChange={(e) => setEthymologie(e.target.value)}
+          id="ethymologie"
+          className="border-b"
+          required
+        />
+        <label forhtml="superOrdre">Super ordre</label>
+        <input
+          value={superOrdre}
+          onChange={(e) => setSuperOrdre(e.target.value)}
+          id="superOrdre"
+          className="border-b"
+        />
+        <label forhtml="ordre">Ordre</label>
+        <input
+          value={ordre}
+          onChange={(e) => setOrdre(e.target.value)}
+          id="ordre"
+          className="border-b"
+        />
+        <label forhtml="sousOrdre">Sous ordre</label>
+        <input
+          value={sousOrdre}
+          onChange={(e) => setSousOrdre(e.target.value)}
+          id="sousOrdre"
+          className="border-b"
+        />
+        <label forhtml="infraOrdre">Infra ordre</label>
+        <input
+          value={infraOrdre}
+          onChange={(e) => setInfraOrdre(e.target.value)}
+          id="infraOrdre"
+          className="border-b"
+        />
+        <label forhtml="microOrdre">Micro ordre</label>
+        <input
+          value={microOrdre}
+          onChange={(e) => setMicroOrdre(e.target.value)}
+          id="microOrdre"
+          className="border-b"
+        />
+        <label forhtml="superFamille">Super famille</label>
+        <input
+          value={superFamille}
+          onChange={(e) => setSuperFamille(e.target.value)}
+          id="superFamille"
+          className="border-b"
+        />
+        <label forhtml="famille">Famille</label>
+        <input
+          value={famille}
+          onChange={(e) => setFamille(e.target.value)}
+          id="famille"
+          className="border-b"
+        />
+        <label forhtml="sousFamille">Sous famille</label>
+        <input
+          value={sousFamille}
+          onChange={(e) => setSousFamille(e.target.value)}
+          id="sousFamille"
+          className="border-b"
+        />
+        <label forhtml="tribu">Tribu</label>
+        <input
+          value={tribu}
+          onChange={(e) => setTribu(e.target.value)}
+          id="tribu"
+          className="border-b"
+        />
+        <label forhtml="genre">Genre</label>
+        <input
+          value={genre}
+          onChange={(e) => setGenre(e.target.value)}
+          id="genre"
+          className="border-b"
+        />
+        <label forhtml="clade">Clade</label>
+        <input
+          value={clade}
+          onChange={(e) => setClade(e.target.value)}
+          id="clade"
+          className="border-b"
+        />
         <div className="flex flex-col items-center justify-center my-4">
           {cousins.map((c, index) => (
-            <div key={index} className="flex gap-2 items-center">
-              <input value={c} onChange={(e) => updateList(index, setCousins, e.target.value)} placeholder="Nom du cousin" className="border-b" />
-              <button type="button" onClick={() => removeFromList(index, setCousins)} className="text-red-600 hover:underline ml-2">✕</button>
+            <div
+              key={index}
+              className="flex gap-2 items-center w-full justify-between"
+            >
+              <label label={`cousin-${index}`}>Cousin n°{index}</label>
+              <input
+                value={c}
+                onChange={(e) => updateList(index, setCousins, e.target.value)}
+                id={`cousin-${index}`}
+                className="border-b"
+              />
+              <button
+                type="button"
+                onClick={() => removeFromList(index, setCousins)}
+                className="text-red-600 hover:underline ml-2"
+              >
+                ✕
+              </button>
             </div>
           ))}
-          <button type="button" className="hover:underline" onClick={() => setCousins([...cousins, ""])}>Ajouter un cousin</button>
+          <button
+            type="button"
+            className="hover:underline mt-2"
+            onClick={() => setCousins([...cousins, ""])}
+          >
+            Ajouter un cousin
+          </button>
         </div>
         <div className="flex flex-col items-center justify-center my-4">
           {especesInf.map((s, index) => (
-            <div key={index} className="flex gap-2 items-center">
-              <input value={s} onChange={(e) => updateList(index, setEspecesInf, e.target.value)} placeholder="Espèce de rang inférieur" className="border-b" />
-              <button type="button" onClick={() => removeFromList(index, setEspecesInf)} className="text-red-600 hover:underline ml-2">✕</button>
+            <div
+              key={index}
+              className="flex gap-2 items-center w-full justify-between"
+            >
+              <label forhtml={`espInf-${index}`}>
+                Espèce de rang inférieur n°{index}
+              </label>
+              <input
+                value={s}
+                onChange={(e) =>
+                  updateList(index, setEspecesInf, e.target.value)
+                }
+                id={`espInf-${index}`}
+                className="border-b"
+              />
+              <button
+                type="button"
+                onClick={() => removeFromList(index, setEspecesInf)}
+                className="text-red-600 hover:underline ml-2"
+              >
+                ✕
+              </button>
             </div>
           ))}
-          <button type="button" className="hover:underline" onClick={() => setEspecesInf([...especesInf, ""])}>Ajouter une espèce de rang inférieur</button>
+          <button
+            type="button"
+            className="hover:underline mt-2"
+            onClick={() => setEspecesInf([...especesInf, ""])}
+          >
+            Ajouter une espèce de rang inférieur
+          </button>
         </div>
-        <button type="submit" className="hover:underline">Enregistrer</button>
+        <button type="submit" className="hover:underline">
+          Enregistrer
+        </button>
         {status && <p>{status}</p>}
       </form>
     </div>
-  )
+  );
 }
