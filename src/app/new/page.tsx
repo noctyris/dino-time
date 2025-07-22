@@ -89,7 +89,7 @@ export default function Page() {
   return (
     <div className="flex justify-center items-center w-full">
       <form onSubmit={handleSubmit} className="flex flex-col h-fit w-fit gap-2">
-        <label forhtml="nom">Nom</label>
+        <label htmlFor="nom">Nom</label>
         <input
           value={nom}
           onChange={(e) => setNom(e.target.value)}
@@ -97,7 +97,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="taille">Taille</label>
+        <label htmlFor="taille">Taille</label>
         <input
           value={taille !== undefined ? taille : ""}
           type="number"
@@ -110,7 +110,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="poids">Poids</label>
+        <label htmlFor="poids">Poids</label>
         <input
           value={poids !== undefined ? poids : ""}
           type="number"
@@ -123,7 +123,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="region">Region</label>
+        <label htmlFor="region">Region</label>
         <input
           value={region}
           onChange={(e) => setRegion(e.target.value)}
@@ -131,7 +131,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="periodeDebut">Début de la période</label>
+        <label htmlFor="periodeDebut">Début de la période</label>
         <input
           value={periodeDebut}
           onChange={(e) => setPeriodeDebut(e.target.value)}
@@ -139,7 +139,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="periodeFin">Fin de la période</label>
+        <label htmlFor="periodeFin">Fin de la période</label>
         <input
           value={periodeFin}
           onChange={(e) => setPeriodeFin(e.target.value)}
@@ -147,7 +147,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="regime">Régime</label>
+        <label htmlFor="regime">Régime</label>
         <input
           value={regime}
           onChange={(e) => setRegime(e.target.value)}
@@ -155,7 +155,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="anneeDecouv">Année de découverte</label>
+        <label htmlFor="anneeDecouv">Année de découverte</label>
         <input
           value={anneeDecouv}
           type="date"
@@ -164,7 +164,7 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="ethymologie">Ethymologie</label>
+        <label htmlFor="ethymologie">Ethymologie</label>
         <input
           value={ethymologie}
           onChange={(e) => setEthymologie(e.target.value)}
@@ -172,77 +172,77 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label forhtml="superOrdre">Super ordre</label>
+        <label htmlFor="superOrdre">Super ordre</label>
         <input
           value={superOrdre}
           onChange={(e) => setSuperOrdre(e.target.value)}
           id="superOrdre"
           className="border-b"
         />
-        <label forhtml="ordre">Ordre</label>
+        <label htmlFor="ordre">Ordre</label>
         <input
           value={ordre}
           onChange={(e) => setOrdre(e.target.value)}
           id="ordre"
           className="border-b"
         />
-        <label forhtml="sousOrdre">Sous ordre</label>
+        <label htmlFor="sousOrdre">Sous ordre</label>
         <input
           value={sousOrdre}
           onChange={(e) => setSousOrdre(e.target.value)}
           id="sousOrdre"
           className="border-b"
         />
-        <label forhtml="infraOrdre">Infra ordre</label>
+        <label htmlFor="infraOrdre">Infra ordre</label>
         <input
           value={infraOrdre}
           onChange={(e) => setInfraOrdre(e.target.value)}
           id="infraOrdre"
           className="border-b"
         />
-        <label forhtml="microOrdre">Micro ordre</label>
+        <label htmlFor="microOrdre">Micro ordre</label>
         <input
           value={microOrdre}
           onChange={(e) => setMicroOrdre(e.target.value)}
           id="microOrdre"
           className="border-b"
         />
-        <label forhtml="superFamille">Super famille</label>
+        <label htmlFor="superFamille">Super famille</label>
         <input
           value={superFamille}
           onChange={(e) => setSuperFamille(e.target.value)}
           id="superFamille"
           className="border-b"
         />
-        <label forhtml="famille">Famille</label>
+        <label htmlFor="famille">Famille</label>
         <input
           value={famille}
           onChange={(e) => setFamille(e.target.value)}
           id="famille"
           className="border-b"
         />
-        <label forhtml="sousFamille">Sous famille</label>
+        <label htmlFor="sousFamille">Sous famille</label>
         <input
           value={sousFamille}
           onChange={(e) => setSousFamille(e.target.value)}
           id="sousFamille"
           className="border-b"
         />
-        <label forhtml="tribu">Tribu</label>
+        <label htmlFor="tribu">Tribu</label>
         <input
           value={tribu}
           onChange={(e) => setTribu(e.target.value)}
           id="tribu"
           className="border-b"
         />
-        <label forhtml="genre">Genre</label>
+        <label htmlFor="genre">Genre</label>
         <input
           value={genre}
           onChange={(e) => setGenre(e.target.value)}
           id="genre"
           className="border-b"
         />
-        <label forhtml="clade">Clade</label>
+        <label htmlFor="clade">Clade</label>
         <input
           value={clade}
           onChange={(e) => setClade(e.target.value)}
@@ -285,7 +285,7 @@ export default function Page() {
               key={index}
               className="flex gap-2 items-center w-full justify-between"
             >
-              <label forhtml={`espInf-${index}`}>
+              <label htmlFor={`espInf-${index}`}>
                 Espèce de rang inférieur n°{index}
               </label>
               <input
