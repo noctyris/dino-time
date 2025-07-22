@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await sql`
-                        INSERT INTO dinosaures (nom, taille, poids, region, periode_debut, periode_fin, cousins, especes_inf, regime, annee_decouv, ethymologie, super_ordre, ordre, sous_ordre, infra_ordre, micro_ordre, super_famille, famille, sous_famille, tribu, genre, clade)
+                        INSERT INTO especes (nom, taille, poids, region, periode_debut, periode_fin, cousins, especes_inf, regime, annee_decouv, ethymologie, super_ordre, ordre, sous_ordre, infra_ordre, micro_ordre, super_famille, famille, sous_famille, tribu, genre, clade)
                         VALUES (
                           ${nom}, ${taille}, ${poids}, ${region}, ${periode_debut}, ${periode_fin}, ${cousins}, ${especes_inf}, ${regime}, ${annee_decouv}, ${ethymologie}, ${super_ordre}, ${ordre}, ${sous_ordre}, ${infra_ordre}, ${micro_ordre}, ${super_famille}, ${famille}, ${sous_famille}, ${tribu}, ${genre}, ${clade}
                         )
