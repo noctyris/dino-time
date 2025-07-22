@@ -4,8 +4,9 @@ import { useState, Dispatch, SetStateAction } from "react";
 
 export default function Page() {
   const [nom, setNom] = useState("");
-  const [taille, setTaille] = useState<number>();
-  const [poids, setPoids] = useState<number>();
+  const [hauteur, setHauteur] = useState("");
+  const [longueur, setLongueur] = useState("");
+  const [poids, setPoids] = useState("");
   const [region, setRegion] = useState("");
   const [periodeDebut, setPeriodeDebut] = useState("");
   const [periodeFin, setPeriodeFin] = useState("");
@@ -35,7 +36,8 @@ export default function Page() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           nom,
-          taille,
+          hauteur,
+          longueur,
           poids,
           region,
           periode_debut: periodeDebut,
@@ -97,26 +99,30 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label htmlFor="taille">Taille</label>
-        <input
-          value={taille !== undefined ? taille : ""}
-          type="number"
-          onChange={(e) =>
-            setTaille(
-              e.target.value === "" ? undefined : parseFloat(e.target.value),
-            )
-          }
-          id="taille"
-          className="border-b"
-          required
-        />
+        <div>
+          <label htmlFor="hauteur">Hauteur</label>
+          <input
+            value={hauteur}
+            onChange={(e) => setHauteur(e.target.value)}
+            id="hauteur"
+            className="border-b"
+            required
+          />
+          <label htmlFor="longueur">Longueur</label>
+          <input
+            value={longueur}
+            onChange={(e) => setLongueur(e.target.value)}
+            id="longueur"
+            className="border-b"
+            required
+          />
+        </div>
         <label htmlFor="poids">Poids</label>
         <input
-          value={poids !== undefined ? poids : ""}
-          type="number"
+          value={poids}
           onChange={(e) =>
             setPoids(
-              e.target.value === "" ? undefined : parseFloat(e.target.value),
+              e.target.value
             )
           }
           id="poids"
@@ -158,7 +164,6 @@ export default function Page() {
         <label htmlFor="anneeDecouv">Année de découverte</label>
         <input
           value={anneeDecouv}
-          type="date"
           onChange={(e) => setAnneeDecouv(e.target.value)}
           id="anneeDecouv"
           className="border-b"
