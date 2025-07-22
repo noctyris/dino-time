@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
 export default function Page() {
   const [nom,setNom] = useState("");
@@ -51,6 +51,17 @@ export default function Page() {
     }
   }
 
+  function updateList(index: number, set: Dispatch<SetStateAction<string[]>>, value: string) {
+    set((prev: string[]) => {
+      const updated = [ ...prev ];
+      updated[index] = value;
+      return updated;
+    })
+  }
+  function removeFromList(index: number, set: Dispatch<SetStateAction<string[]>>) {
+    set((prev: string[]) => prev.filter((_,i) => i!=index));
+  }
+
   return (
     <div className="flex justify-center items-center w-full">
       <form onSubmit={handleSubmit} className="flex flex-col h-fit w-fit gap-2">
@@ -60,8 +71,6 @@ export default function Page() {
         <input value={region} onChange={(e) => setRegion(e.target.value)} placeholder="Region" className="border-b" required />
         <input value={periodeDebut} onChange={(e) => setPeriodeDebut(e.target.value)} placeholder="Début de la période de vie" className="border-b" required />
         <input value={periodeFin} onChange={(e) => setPeriodeFin(e.target.value)} placeholder="Fin de la période de vie" className="border-b" required />
-        {/*<input value={cousins} onChange={(e) => set(e.target.value)} placeholder"" className="border-b" />
-        <input value={} onChange={(e) => set(e.target.value)} placeholder="" className="border-b" />*/}
         <input value={regime} onChange={(e) => setRegime(e.target.value)} placeholder="Régime" className="border-b" required />
         <input value={anneeDecouv} type="date" onChange={(e) => setAnneeDecouv(e.target.value)} placeholder="Année de découverte" className="border-b" required />
         <input value={ethymologie} onChange={(e) => setEthymologie(e.target.value)} placeholder="Ethymologie" className="border-b" required />
@@ -76,7 +85,25 @@ export default function Page() {
         <input value={tribu} onChange={(e) => setTribu(e.target.value)} placeholder="Tribu" className="border-b" />
         <input value={genre} onChange={(e) => setGenre(e.target.value)} placeholder="Genre" className="border-b" />
         <input value={clade} onChange={(e) => setClade(e.target.value)} placeholder="Clade" className="border-b" />
-        <button type="submit">Enregistrer</button>
+        <div className="flex flex-col items-center justify-center my-4">
+          {cousins.map((c, index) => (
+            <div key={index} className="flex gap-2 items-center">
+              <input value={c} onChange={(e) => updateList(index, setCousins, e.target.value)} placeholder="Nom du cousin" className="border-b" />
+              <button type="button" onClick={() => removeFromList(index, setCousins)} className="text-red-600 hover:underline ml-2">✕</button>
+            </div>
+          ))}
+          <button type="button" className="hover:underline" onClick={() => setCousins([...cousins, ""])}>Ajouter un cousin</button>
+        </div>
+        <div className="flex flex-col items-center justify-center my-4">
+          {especesInf.map((s, index) => (
+            <div key={index} className="flex gap-2 items-center">
+              <input value={s} onChange={(e) => updateList(index, setEspecesInf, e.target.value)} placeholder="Espèce de rang inférieur" className="border-b" />
+              <button type="button" onClick={() => removeFromList(index, setEspecesInf)} className="text-red-600 hover:underline ml-2">✕</button>
+            </div>
+          ))}
+          <button type="button" className="hover:underline" onClick={() => setEspecesInf([...especesInf, ""])}>Ajouter une espèce de rang inférieur</button>
+        </div>
+        <button type="submit" className="hover:underline">Enregistrer</button>
         {status && <p>{status}</p>}
       </form>
     </div>
