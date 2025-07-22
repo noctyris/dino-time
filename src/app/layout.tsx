@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Montserrat, Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
 
@@ -25,11 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang='fr'>
       <body
-        className={`${montserrat.className} ${montserratAlternates.variable} antialiased`}
+        className={`${montserrat.className} ${montserratAlternates.variable} antialiased w-full`}
       >
-        <h1 className="important text-3xl mx-auto">Dino Time</h1>
+        <header className="w-full flex justify-around">
+          <Link href="/" className="important text-3xl">Dino Time</Link>
+        </header>
         {children}
       </body>
     </html>

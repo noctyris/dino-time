@@ -1,15 +1,16 @@
 export interface Dino {
   id: number;
   nom: string;
-  taille: number;
-  poids: number;
+  hauteur: string;
+  longueur: string;
+  poids: string;
   region: string;
   periode_debut: string;
   periode_fin: string;
   cousins: string[];
   especes_inf: string[];
   regime: string;
-  annee_decouv: string; // ISO
+  annee_decouv: string;
   ethymologie: string;
   super_ordre: string;
   ordre: string;

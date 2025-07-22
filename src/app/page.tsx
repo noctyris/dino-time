@@ -12,7 +12,9 @@ export default async function Home() {
 
   return (
     <>
-      {dinos}
+      <div className="grid grid-columns-4 w-full p-4">
+        {dinos}
+      </div>
     </>
   );
 }
