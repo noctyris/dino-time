@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang='fr'>
       <body
-        className={`${montserrat.className} ${montserratAlternates.variable} antialiased w-full`}
+        className={`${montserrat.className} ${montserratAlternates.variable} antialiased w-full p-2`}
       >
         <header className="w-full flex justify-around">
           <Link href="/" className="important text-3xl">Dino Time</Link>
