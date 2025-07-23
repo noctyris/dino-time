@@ -12,8 +12,8 @@ export interface Dino {
   regime: string;
   annee_decouv: string;
   etymologie: string;
-  embranchement string;
-  sous_embranchement string;
+  embranchement: string;
+  sous_embranchement: string;
   super_classe: string;
   classe: string;
   sous_classe: string;
