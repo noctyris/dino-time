@@ -30,4 +30,5 @@ export interface Dino {
   genre: string;
   clade: string[];
   categorie: string;
+  description: string;
 }
