@@ -14,7 +14,13 @@ export default function Page() {
   const [especesInf, setEspecesInf] = useState<string[]>([]);
   const [regime, setRegime] = useState("");
   const [anneeDecouv, setAnneeDecouv] = useState("");
-  const [ethymologie, setEthymologie] = useState("");
+  const [etymologie, setEtymologie] = useState("");
+  const [embranchement, setEmbranchement] = useState("");
+  const [sousEmbranchement, setSousEmbranchement] = useState("");
+  const [superClasse, setSuperClasse] = useState("");
+  const [classe, setClasse] = useState("");
+  const [sousClasse, setSousClasse] = useState("");
+  const [infraClasse, setInfraClasse] = useState("");
   const [superOrdre, setSuperOrdre] = useState("");
   const [ordre, setOrdre] = useState("");
   const [sousOrdre, setSousOrdre] = useState("");
@@ -25,7 +31,8 @@ export default function Page() {
   const [sousFamille, setSousFamille] = useState("");
   const [tribu, setTribu] = useState("");
   const [genre, setGenre] = useState("");
-  const [clade, setClade] = useState("");
+  const [clades, setClades] = useState<string[]>([]);
+  const [categorie, setCategorie] = useState("");
   const [status, setStatus] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -46,7 +53,13 @@ export default function Page() {
           especes_inf: especesInf,
           regime,
           annee_decouv: anneeDecouv,
-          ethymologie,
+          etymologie,
+          embranchement,
+          sous_embranchement: sousEmbranchement,
+          super_classe: superClasse,
+          classe,
+          sous_classe: sousClasse,
+          infra_classe: infraClasse,
           super_ordre: superOrdre,
           ordre,
           sous_ordre: sousOrdre,
@@ -57,7 +70,8 @@ export default function Page() {
           sous_famille: sousFamille,
           tribu,
           genre,
-          clade,
+          clades,
+          categorie,
         }),
       });
       if (!res.ok) throw new Error("Failed to submit to new-entry API");
@@ -169,13 +183,55 @@ export default function Page() {
           className="border-b"
           required
         />
-        <label htmlFor="ethymologie">Ethymologie</label>
+        <label htmlFor="etymologie">Etymologie</label>
         <input
-          value={ethymologie}
-          onChange={(e) => setEthymologie(e.target.value)}
-          id="ethymologie"
+          value={etymologie}
+          onChange={(e) => setEtymologie(e.target.value)}
+          id="etymologie"
           className="border-b"
           required
+        />
+        <label htmlFor="embranchement">Embranchement</label>
+        <input
+          value={embranchement}
+          onChange={(e) => setEmbranchement(e.target.value)}
+          id="embranchement"
+          className="border-b"
+        />
+        <label htmlFor="sousEmbranchement">Sous embranchement</label>
+        <input
+          value={sousEmbranchement}
+          onChange={(e) => setSousEmbranchement(e.target.value)}
+          id=""
+          className="border-b"
+        />
+        <label htmlFor="superClasse">Super classe</label>
+        <input
+          value={superClasse}
+          onChange={(e) => setSuperClasse(e.target.value)}
+          id="superClasse"
+          className="border-b"
+        />
+        <label htmlFor="classe">Classe</label>
+        <input
+          value={classe}
+          onChange={(e) => setClasse(e.target.value)}
+          id="classe"
+          className="border-b"
+        />
+        <label htmlFor="sousClasse">Sous classe</label>
+        <input
+          value={sousClasse}
+          onChange={(e) => setSousClasse(e.target.value)}
+          id="sousClasse"
+          className="border-b"
+        />
+        <label htmlFor="infraClasse">Infra classe</label>
+        <input
+          value={infraClasse}
+          onChange={(e) => setInfraClasse(e.target.value)}
+          id="infraClasse"
+          className="border-b"
         />
         <label htmlFor="superOrdre">Super ordre</label>
         <input
@@ -247,13 +303,12 @@ export default function Page() {
           id="genre"
           className="border-b"
         />
-        <label htmlFor="clade">Clade</label>
-        <input
-          value={clade}
-          onChange={(e) => setClade(e.target.value)}
-          id="clade"
-          className="border-b"
-        />
+        <select defaultValue="Catégorie" onChange={(e) => setCategorie(e.target.value)}>
+          <option disabled className={categorie ? "hidden" : "block"}>Catégorie</option>
+          <option>Dinosaure</option>
+          <option>Reptile marin</option>
+          <option>Reptile volant</option>
+        </select>
         <div className="flex flex-col items-center justify-center my-4">
           {cousins.map((c, index) => (
             <div
@@ -316,6 +371,36 @@ export default function Page() {
             onClick={() => setEspecesInf([...especesInf, ""])}
           >
             Ajouter une espèce de rang inférieur
+          </button>
+        </div>
+        <div className="flex flex-col items-center justify-center my-4">
+          {clades.map((c, index) => (
+            <div
+              key={index}
+              className="flex gap-2 items-center w-full justify-between"
+            >
+              <label htmlFor={`clade-${index}`}>Clade n°{index}</label>
+              <input
+                value={c}
+                onChange={(e) => updateList(index, setClades, e.target.value)}
+                id={`clade-${index}`}
+                className="border-b"
+              />
+              <button
+                type="button"
+                onClick={() => removeFromList(index, setClades)}
+                className="text-red-600 hover:underline ml-2"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+          <button
+            type="button"
+            className="hover:underline mt-2"
+            onClick={() => setClades([...clades, ""])}
+          >
+            Ajouter une clade
           </button>
         </div>
         <button type="submit" className="hover:underline">

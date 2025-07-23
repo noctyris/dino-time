@@ -11,7 +11,13 @@ export interface Dino {
   especes_inf: string[];
   regime: string;
   annee_decouv: string;
-  ethymologie: string;
+  etymologie: string;
+  embranchement string;
+  sous_embranchement string;
+  super_classe: string;
+  classe: string;
+  sous_classe: string;
+  infra_classe: string;
   super_ordre: string;
   ordre: string;
   sous_ordre: string;
@@ -22,5 +28,6 @@ export interface Dino {
   sous_famille: string;
   tribu: string;
   genre: string;
-  clade: string;
+  clade: string[];
+  categorie: string;
 }
