@@ -33,6 +33,7 @@ export default function Page() {
   const [genre, setGenre] = useState("");
   const [clades, setClades] = useState<string[]>([]);
   const [categorie, setCategorie] = useState("");
+  const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -72,6 +73,7 @@ export default function Page() {
           genre,
           clades,
           categorie,
+          description,
         }),
       });
       if (!res.ok) throw new Error("Failed to submit to new-entry API");
@@ -403,6 +405,8 @@ export default function Page() {
             Ajouter une clade
           </button>
         </div>
+        <label htmlFor="desc">Description</label>
+        <textarea className="w-full border-1 rounded-xl resize-none" value={description} rows="4" cols="50" id="desc" onChange={(e) => setDescription(e.target.value)}></textarea>
         <button type="submit" className="hover:underline">
           Enregistrer
         </button>
