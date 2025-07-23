@@ -16,7 +16,7 @@ const montserratAlternates = Montserrat_Alternates({
 });
 
 export const metadata: Metadata = {
-  title: "Dino Time",
+  title: "DinoDex",
   description: "",
 };
 
@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <header className="w-full flex justify-around">
           <Link href="/" className="important text-3xl">
-            Dino Time
+            DinoDex
           </Link>
         </header>
         {children}
