@@ -136,11 +136,7 @@ export default function Page() {
         <label htmlFor="poids">Poids</label>
         <input
           value={poids}
-          onChange={(e) =>
-            setPoids(
-              e.target.value
-            )
-          }
+          onChange={(e) => setPoids(e.target.value)}
           id="poids"
           className="border-b"
           required
@@ -305,8 +301,13 @@ export default function Page() {
           id="genre"
           className="border-b"
         />
-        <select defaultValue="Catégorie" onChange={(e) => setCategorie(e.target.value)}>
-          <option disabled className={categorie ? "hidden" : "block"}>Catégorie</option>
+        <select
+          defaultValue="Catégorie"
+          onChange={(e) => setCategorie(e.target.value)}
+        >
+          <option disabled className={categorie ? "hidden" : "block"}>
+            Catégorie
+          </option>
           <option>Dinosaure</option>
           <option>Reptile marin</option>
           <option>Reptile volant</option>
@@ -406,7 +407,14 @@ export default function Page() {
           </button>
         </div>
         <label htmlFor="desc">Description</label>
-        <textarea className="w-full border-1 rounded-xl resize-none" value={description} rows={4} cols={50} id="desc" onChange={(e) => setDescription(e.target.value)}></textarea>
+        <textarea
+          className="w-full border-1 rounded-xl resize-none"
+          value={description}
+          rows={4}
+          cols={50}
+          id="desc"
+          onChange={(e) => setDescription(e.target.value)}
+        ></textarea>
         <button type="submit" className="hover:underline">
           Enregistrer
         </button>

@@ -25,14 +25,12 @@ export default function Page() {
   return (
     <>
       {error && <p className="text-red-500">Erreur : {error}</p>}
-      {espece ? <DetailedPage espece={espece} /> : (
-        <p>Chargement...</p>
-      )}
+      {espece ? <DetailedPage espece={espece} /> : <p>Chargement...</p>}
     </>
   );
 }
 
-function DetailedPage({espece}: {espece: Dino}) {
+function DetailedPage({ espece }: { espece: Dino }) {
   return (
     <div className="p-2">
       <h2 className="text-2xl important">{espece.nom}</h2>
@@ -50,8 +48,10 @@ function DetailedPage({espece}: {espece: Dino}) {
         <SectionTitle text="Vie" />
         <p>Régime: {espece.regime}</p>
         <p>Région: {espece.region}</p>
-        <p>Période: {espece.periode_debut} - {espece.periode_fin}</p>
+        <p>
+          Période: {espece.periode_debut} - {espece.periode_fin}
+        </p>
       </section>
     </div>
-  )
+  );
 }

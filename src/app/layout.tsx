@@ -7,13 +7,13 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   weight: "500",
-})
+});
 
 const montserratAlternates = Montserrat_Alternates({
   variable: "--font-montserrat_alternates",
   subsets: ["latin"],
   weight: "500",
-})
+});
 
 export const metadata: Metadata = {
   title: "Dino Time",
@@ -26,12 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='fr'>
+    <html lang="fr">
       <body
         className={`${montserrat.className} ${montserratAlternates.variable} antialiased w-full p-2`}
       >
         <header className="w-full flex justify-around">
-          <Link href="/" className="important text-3xl">Dino Time</Link>
+          <Link href="/" className="important text-3xl">
+            Dino Time
+          </Link>
         </header>
         {children}
       </body>

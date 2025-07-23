@@ -1,5 +1,5 @@
 import { fetchData } from "@/lib/data";
-import { NextResponse, NextRequest } from "next/server"
+import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
@@ -18,10 +18,10 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(data);
   } catch (err) {
-    console.error(err)
+    console.error(err);
     return NextResponse.json(
-      {error: "Database select failed" },
-      {status: 500},
+      { error: "Database select failed" },
+      { status: 500 },
     );
   }
 }
