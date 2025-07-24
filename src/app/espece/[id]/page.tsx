@@ -52,6 +52,21 @@ function DetailedPage({ espece }: { espece: Dino }) {
           Période: {espece.periode_debut} - {espece.periode_fin}
         </p>
       </section>
+      <section>
+        <SectionTitle text="Liens" />
+        <h4 className="important text-l font-semibold">Espèces cousines</h4>
+        <div className="grid grid-columns-4">
+          {espece.cousins.map((e) => (
+            <p key={e}>{e}</p>
+          ))}
+        </div>
+        <h4 className="important text-l font-semibold">Espèces de rang inférieur</h4>
+        <div className="grid grid-columns-4">
+          {espece.especes_inf.map((e) => (
+            <p key={e}>{e}</p>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
