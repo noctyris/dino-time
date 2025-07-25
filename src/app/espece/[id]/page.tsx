@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import SectionTitle from "@/ui/sectionTitle";
+import { MassIcon, HeightIcon, LengthIcon } from "@/ui/svgIcons";
 import { Dino } from "@/types";
 
 export default function Page() {
@@ -31,16 +32,32 @@ export default function Page() {
 }
 
 function DetailedPage({ espece }: { espece: Dino }) {
+  function formatData(data) {
+    return ((data.includes("/") ? "Entre " : "") + data.replace("~", "Environ ").replace("/", " et ")).replace("  ", " ")
+  }
+  const poids = formatData(espece.poids);
+  const longueur = formatData(espece.longueur);
+  const hauteur = formatData(espece.hauteur);
+
   return (
     <div className="p-2">
       <h2 className="text-2xl important">{espece.nom}</h2>
       <section>
         <SectionTitle text="Caractéristiques physiques" />
-        <div className="flex w-full md:w-4/5 items-center gap-2">
-          <p>Poids: {espece.poids}</p>
-          <div className="gap-2">
-            <p>Hauteur: {espece.hauteur}</p>
-            <p>Longueur: {espece.longueur}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 w-full md:w-4/5 items-center justify-center gap-2 my-3">
+          <div className="flex bg-gray-500/75 rounded-2xl w-75 items-center py-2 px-5 mx-auto">
+            <MassIcon />
+            <span className="flex-1 text-center">{poids}</span>
+          </div>
+          <div className="gap-2 flex flex-col">
+            <div className="flex bg-gray-500/75 rounded-2xl w-75 items-center py-2 px-5 mx-auto">
+              <HeightIcon />
+              <span className="flex-1 text-center">{hauteur}</span>
+            </div>
+            <div className="flex bg-gray-500/75 rounded-2xl w-75 items-center py-2 px-5 mx-auto">
+              <LengthIcon />
+              <span className="flex-1 text-center">{longueur}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -49,7 +66,14 @@ function DetailedPage({ espece }: { espece: Dino }) {
         <p>Régime: {espece.regime}</p>
         <p>Région: {espece.region}</p>
         <p>
-          Période: {espece.periode_debut} - {espece.periode_fin}
+          Période:{" "}
+          {espece.periode_debut === espece.periode_fin ? (
+            <span>{espece.periode_fin}</span>
+          ) : (
+            <span>
+              {espece.periode_debut} - {espece.periode_fin}
+            </span>
+          )}
         </p>
       </section>
       <section>
@@ -60,7 +84,9 @@ function DetailedPage({ espece }: { espece: Dino }) {
             <p key={e}>{e}</p>
           ))}
         </div>
-        <h4 className="important text-l font-semibold">Espèces de rang inférieur</h4>
+        <h4 className="important text-l font-semibold">
+          Espèces de rang inférieur
+        </h4>
         <div className="grid grid-columns-4">
           {espece.especes_inf.map((e) => (
             <p key={e}>{e}</p>
