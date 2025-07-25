@@ -32,7 +32,7 @@ export default function Page() {
 }
 
 function DetailedPage({ espece }: { espece: Dino }) {
-  function formatData(data) {
+  function formatData(data: string) {
     return ((data.includes("/") ? "Entre " : "") + data.replace("~", "Environ ").replace("/", " et ")).replace("  ", " ")
   }
   const poids = formatData(espece.poids);
