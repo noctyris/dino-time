@@ -10,7 +10,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="grid grid-columns-4 w-full p-4">{dinos}</div>
+      <div className="w-full p-4 grid gap-[20px] grid-cols-[repeat(auto-fit,minmax(150px,250px))] justify-center">{dinos}</div>
     </>
   );
 }
