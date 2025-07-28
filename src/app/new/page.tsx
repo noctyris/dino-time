@@ -415,11 +415,21 @@ export default function Page() {
           id="desc"
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-        <button type="submit" disabled={!categorie && !genre} className="hover:underline">
+        <button
+          type="submit"
+          disabled={!categorie && !genre}
+          className="hover:underline"
+        >
           Enregistrer
         </button>
       </form>
-      {status && <p className={`fixed right-0 top-0 bg-white text-black p-4 m-2 rounded-3xl`}>{status}</p>}
+      {status && (
+        <p
+          className={`fixed right-0 top-0 bg-white text-black p-4 m-2 rounded-3xl`}
+        >
+          {status}
+        </p>
+      )}
     </div>
   );
 }
