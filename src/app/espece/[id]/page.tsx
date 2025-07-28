@@ -76,25 +76,41 @@ function DetailedPage({ espece }: { espece: Dino }) {
         <p><b>Etymologie:{' '}</b><br />{espece.etymologie}</p>
       </div>
       <Separator />
-      <div className="flex gap-x-2">
-        <div className="w-1/2">
-          <h4 className="important text-xl font-semibold shadow-xl/50 shadow-(--accent)">Espèces cousines</h4>
-          <div className="grid grid-cols-3">
-            {espece.cousins.map((e) => (
-              <p key={e}>{e}</p>
-            ))}
+      <div className="mx-auto w-fit flex flex-col md:flex-row gap-2">
+        {espece.cousins.length>0 && (
+          <div>
+            <h4 className="important text-xl font-semibold shadow-xl/50 shadow-(--accent)">Espèces cousines</h4>
+            <div className="grid grid-cols-3 gap-2">
+              {espece.cousins.map((e) => (
+                <p key={e} className="bg-gray-500/75 rounded-xl p-2 text-center">{e}</p>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="w-1/2">
-         <h4 className="important text-xl font-semibold">
-            Espèces de rang inférieur
-          </h4>
-          <div className="grid grid-cols-3">
-            {espece.especes_inf.map((e) => (
-              <p key={e}>{e}</p>
-            ))}
+        )}
+        {espece.especes_inf.length>0 && (
+          <div>
+            <h4 className="important text-xl font-semibold">
+              Espèces de rang inférieur
+            </h4>
+            <div className="grid grid-cols-3 gap-2">
+              {espece.especes_inf.map((e) => (
+                <p key={e} className="bg-gray-500/75 rounded-xl p-2 text-center">{e}</p>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+        {espece.clades.length>0 && (
+          <div>
+           <h4 className="important text-xl font-semibold">
+             Clades
+           </h4>
+            <div className="grid grid-cols-3">
+              {espece.clades.map((e) => (
+                <p key={e}>{e}</p>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       <Separator />
       <table className="mx-auto">
@@ -113,6 +129,9 @@ function DetailedPage({ espece }: { espece: Dino }) {
           <TableRow data={espece.super_famille} nom="Super famille" />
           <TableRow data={espece.famille} nom="Famille " />
           <TableRow data={espece.sous_famille} nom="Sous famille" />
+          <TableRow data={espece.tribu} nom="Tribu" />
+          <TableRow data={espece.genre} nom="Genre" />
+          <TableRow data={espece.categorie} nom="Catégorie" />
         </tbody>
       </table>
     </div>
