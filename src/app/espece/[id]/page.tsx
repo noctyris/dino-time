@@ -69,10 +69,10 @@ function TableDetailedPage({ espece }: { espece: Dino }) {
       <table className="mx-auto w-4/5">
         <tbody>
           <TableRow
-            data={`${espece.longueur} × ${espece.hauteur}`}
+            data={`${longueur} × ${hauteur}`}
             nom="Dimensions"
           />
-          <TableRow data={espece.poids} nom="Poids" />
+          <TableRow data={poids} nom="Poids" />
           <TableRow data={espece.region} nom="Région" />
           <TableRow
             data={

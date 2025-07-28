@@ -28,7 +28,7 @@ export interface Dino {
   sous_famille: string;
   tribu: string;
   genre: string;
-  clade: string[];
+  clades: string[];
   categorie: string;
   description: string;
 }
