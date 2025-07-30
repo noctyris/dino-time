@@ -142,10 +142,12 @@ function FreeDetailedPage({ espece }: { espece: Dino }) {
       <div className="w-full md:w-2/3 mx-auto">
         <p>Découvert en {espece.annee_decouv}</p>
         <p className="mt-2">
-          <b>Etymologie: </b>
+          <b>Etymologie : </b>
           <br />
           {espece.etymologie}
         </p>
+        <p className="mt-2">Règne : Animalia</p>
+        <p className="mt-2">Type : {espece.categorie.includes("Dino") ? "Dinosaure" : "Reptile"}</p>
       </div>
       <Separator />
       <div className="mx-auto w-fit flex flex-col md:flex-row gap-2">

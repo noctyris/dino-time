@@ -1,4 +1,4 @@
-export interface Dino {
+interface Dino {
   id: number;
   nom: string;
   hauteur: string;
@@ -32,3 +32,42 @@ export interface Dino {
   categorie: string;
   description: string;
 }
+
+const labels: Record<keyof Dino, string> = {
+  id: "id",
+  nom: "Nom",
+  hauteur: "Hauteur",
+  longueur: "Longueur",
+  poids: "Poids",
+  region: "Région",
+  periode_debut: "Début de la période",
+  periode_fin: "Fin de la période",
+  regime: "Régime",
+  annee_decouv: "Année de découverte",
+  etymologie: "Étymologie",
+  embranchement: "Embranchement",
+  sous_embranchement: "Sous-embranchement",
+  super_classe: "Super-classe",
+  classe: "Classe",
+  sous_classe: "Sous-classe",
+  infra_classe: "Infra-classe",
+  super_ordre: "Super-ordre",
+  ordre: "Ordre",
+  sous_ordre: "Sous-ordre",
+  infra_ordre: "Infra-ordre",
+  micro_ordre: "Micro-ordre",
+  super_famille: "Super-famille",
+  famille: "Famille",
+  sous_famille: "Sous-famille",
+  tribu: "Tribu",
+  genre: "Genre",
+  categorie: "Catégorie",
+  cousins: "Cousins",
+  especes_inf: "Espèces de rang inférieur",
+  clades: "Clades",
+  description: "Description",
+};
+
+export type { Dino };
+export { labels };
+
