@@ -21,7 +21,7 @@ export default function Page() {
   const { id } = useParams();
   const [espece, setEspece] = useState<Dino | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [tableView, setTableView] = useState<boolean>(!false);
+  const [tableView, setTableView] = useState<boolean>(false);
 
   useEffect(() => {
     if (!id) return;
@@ -74,6 +74,7 @@ function TableDetailedPage({ espece }: { espece: Dino }) {
           />
           <TableRow data={poids} nom="Poids" />
           <TableRow data={espece.region} nom="Région" />
+          <TableRow data="Animalia" nom="Règne" />
           <TableRow
             data={
               espece.periode_debut === espece.periode_fin
@@ -107,6 +108,7 @@ function TableDetailedPage({ espece }: { espece: Dino }) {
           <TableRow data={espece.tribu} nom="Tribu" />
           <TableRow data={espece.genre} nom="Genre" />
           <TableRow data={espece.categorie} nom="Catégorie" />
+          <TableRow data={espece.categorie.includes("Dino") ? "Dinosaure" : "Reptile"} nom="Type" />
           <TableRow data={espece.clades.join(", ")} nom="Clades" />
         </tbody>
       </table>
