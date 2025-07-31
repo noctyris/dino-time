@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import { createEmptyDino } from "@/lib/varInit";
 import { Dino, labels } from "@/types";
 
