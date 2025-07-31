@@ -31,6 +31,7 @@ interface Dino {
   clades: string[];
   categorie: string;
   description: string;
+  image: string;
 }
 
 const labels: Record<keyof Dino, string> = {
@@ -66,6 +67,7 @@ const labels: Record<keyof Dino, string> = {
   especes_inf: "Espèces de rang inférieur",
   clades: "Clades",
   description: "Description",
+  image: "URL de l'image"
 };
 
 export type { Dino };

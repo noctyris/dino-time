@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { createEmptyDino } from "@/lib/varInit";
 import { useParams } from "next/navigation";
-import Loading from "@/ui/loading";
 import { Dino, labels } from "@/types";
+import Loading from "@/ui/loading";
 
 export default function Page() {
   const { id } = useParams();
@@ -102,21 +103,21 @@ function Form({
 
   return (
     <div className="flex justify-center items-center w-full">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 h-fit w-fit backdrop-blur-sm backdrop-brightness-50 p-4 rounded-2xl border-2 border-gray-500">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 h-fit w-fit backdrop-blur-xs backdrop-brightness-50 p-4 rounded-2xl border-2 border-gray-500">
         {[
           "nom", "hauteur", "longueur", "poids", "region",
           "periode_debut", "periode_fin", "regime", "annee_decouv",
           "etymologie", "embranchement", "sous_embranchement",
           "super_classe", "classe", "sous_classe", "infra_classe",
           "super_ordre", "ordre", "sous_ordre", "infra_ordre", "micro_ordre",
-          "super_famille", "famille", "sous_famille", "tribu", "genre"
+          "super_famille", "famille", "sous_famille", "tribu", "genre", "image"
         ].map((key) => (
           <div key={key} className="flex justify-between">
             <label htmlFor={key}>{labels[key as keyof Dino]}</label>
             <input
               id={key}
               className="border-b"
-              required={["nom", "hauteur", "longueur", "poids", "region"].includes(key)}
+              required={["nom", "hauteur", "longueur", "poids", "region", "periode_debut", "periode_fin", "regime", "annee_decouv", "etymologie", "genre", "image"].includes(key)}
               value={espece[key as keyof Dino] as string}
               onChange={(e) => handleChange(key as keyof Dino, e.target.value)}
             />
@@ -124,10 +125,10 @@ function Form({
         ))}
 
         <select
-          id="categorie"
           value={espece.categorie || ""}
           onChange={(e) => handleChange("categorie", e.target.value)}
           className="border-1 p-1 rounded-xl"
+          required={true}
         >
           <option disabled value="">
             Catégorie
@@ -237,52 +238,14 @@ function Form({
           </button>
         </div>
 
-        <button
+        <input
           type="submit"
-          disabled={!espece.categorie || !espece.genre}
           className="hover:underline"
-        >
-          Enregistrer
-        </button>
+          value="💾 Sauvegarder"
+        />
       </form>
     </div>
   );
 }
 
-function createEmptyDino(): Dino {
-  return {
-    id: 0,
-    nom: '',
-    hauteur: '',
-    longueur: '',
-    poids: '',
-    region: '',
-    periode_debut: '',
-    periode_fin: '',
-    cousins: [],
-    especes_inf: [],
-    regime: '',
-    annee_decouv: '',
-    etymologie: '',
-    embranchement: '',
-    sous_embranchement: '',
-    super_classe: '',
-    classe: '',
-    sous_classe: '',
-    infra_classe: '',
-    super_ordre: '',
-    ordre: '',
-    sous_ordre: '',
-    infra_ordre: '',
-    micro_ordre: '',
-    super_famille: '',
-    famille: '',
-    sous_famille: '',
-    tribu: '',
-    genre: '',
-    clades: [],
-    categorie: '',
-    description: '',
-  };
-}
 

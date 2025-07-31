@@ -36,15 +36,16 @@ export async function POST(req: NextRequest) {
     clades,
     categorie,
     description,
+    image,
   } = data;
 
   console.log(data);
 
   try {
     await sql`
-                        INSERT INTO especes (nom, hauteur, longueur, poids, region, periode_debut, periode_fin, cousins, especes_inf, regime, annee_decouv, etymologie, embranchement, sous_embranchement, super_classe, classe, sous_classe, infra_classe, super_ordre, ordre, sous_ordre, infra_ordre, micro_ordre, super_famille, famille, sous_famille, tribu, genre, clades, categorie, description)
+                        INSERT INTO especes (nom, hauteur, longueur, poids, region, periode_debut, periode_fin, cousins, especes_inf, regime, annee_decouv, etymologie, embranchement, sous_embranchement, super_classe, classe, sous_classe, infra_classe, super_ordre, ordre, sous_ordre, infra_ordre, micro_ordre, super_famille, famille, sous_famille, tribu, genre, clades, categorie, description, image)
                         VALUES (
-                          ${nom}, ${hauteur}, ${longueur}, ${poids}, ${region}, ${periode_debut}, ${periode_fin}, ${cousins}, ${especes_inf}, ${regime}, ${annee_decouv}, ${etymologie}, ${embranchement}, ${sous_embranchement}, ${super_classe}, ${classe}, ${sous_classe}, ${infra_classe}, ${super_ordre}, ${ordre}, ${sous_ordre}, ${infra_ordre}, ${micro_ordre}, ${super_famille}, ${famille}, ${sous_famille}, ${tribu}, ${genre}, ${clades}, ${categorie}, ${description}
+                          ${nom}, ${hauteur}, ${longueur}, ${poids}, ${region}, ${periode_debut}, ${periode_fin}, ${cousins}, ${especes_inf}, ${regime}, ${annee_decouv}, ${etymologie}, ${embranchement}, ${sous_embranchement}, ${super_classe}, ${classe}, ${sous_classe}, ${infra_classe}, ${super_ordre}, ${ordre}, ${sous_ordre}, ${infra_ordre}, ${micro_ordre}, ${super_famille}, ${famille}, ${sous_famille}, ${tribu}, ${genre}, ${clades}, ${categorie}, ${description}, ${image}
                         )
                 `;
     return NextResponse.json({ success: true });
