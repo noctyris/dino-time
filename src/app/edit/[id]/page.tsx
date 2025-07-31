@@ -102,7 +102,7 @@ function Form({
 
   return (
     <div className="flex justify-center items-center w-full">
-      <form onSubmit={handleSubmit} className="flex flex-col h-fit w-fit gap-2 backdrop-blur-sm backdrop-brightness-50 p-4 rounded-2xl border-2 border-gray-500">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 h-fit w-fit backdrop-blur-sm backdrop-brightness-50 p-4 rounded-2xl border-2 border-gray-500">
         {[
           "nom", "hauteur", "longueur", "poids", "region",
           "periode_debut", "periode_fin", "regime", "annee_decouv",
@@ -123,7 +123,6 @@ function Form({
           </div>
         ))}
 
-        <label htmlFor="categorie">Catégorie</label>
         <select
           id="categorie"
           value={espece.categorie || ""}
