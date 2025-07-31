@@ -3,16 +3,18 @@ import styled from "styled-components";
 
 export default function Loading() {
   return (
-    <StyledWrapper>
-      <div className="loop cubes">
-        <div className="item cubes" />
-        <div className="item cubes" />
-        <div className="item cubes" />
-        <div className="item cubes" />
-        <div className="item cubes" />
-        <div className="item cubes" />
-      </div>
-    </StyledWrapper>
+    <div className="h-full">
+      <StyledWrapper>
+        <div className="loop cubes">
+          <div className="item cubes" />
+          <div className="item cubes" />
+          <div className="item cubes" />
+          <div className="item cubes" />
+          <div className="item cubes" />
+          <div className="item cubes" />
+        </div>
+      </StyledWrapper>
+    </div>
   );
 }
 

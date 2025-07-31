@@ -66,7 +66,8 @@ function TableDetailedPage({ espece }: { espece: Dino }) {
   return (
     <div className="p-2">
       <h2 className="text-2xl important">{espece.nom}</h2>
-      <table className="mx-auto w-4/5">
+      <div className="mx-auto w-full md:w-4/5 backdrop-blur-sm backdrop-brightness-50 p-4 rounded-2xl border-2 border-gray-500">
+      <table>
         <tbody>
           <TableRow
             data={`${longueur} × ${hauteur}`}
@@ -110,8 +111,10 @@ function TableDetailedPage({ espece }: { espece: Dino }) {
           <TableRow data={espece.categorie} nom="Catégorie" />
           <TableRow data={espece.categorie.includes("Dino") ? "Dinosaure" : "Reptile"} nom="Type" />
           <TableRow data={espece.clades.join(", ")} nom="Clades" />
+          <TableRow data={espece.description} nom="Description" />
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
@@ -139,24 +142,14 @@ function FreeDetailedPage({ espece }: { espece: Dino }) {
           }
         />
       </div>
-      <div className="w-full md:w-2/3 mx-auto">
-        <p>Découvert en {espece.annee_decouv}</p>
-        <p className="mt-2">
-          <b>Etymologie : </b>
-          <br />
-          {espece.etymologie}
-        </p>
-        <p className="mt-2">Règne : Animalia</p>
-        <p className="mt-2">Type : {espece.categorie.includes("Dino") ? "Dinosaure" : "Reptile"}</p>
-      </div>
       <Separator />
-      <div className="mx-auto w-fit flex flex-col md:flex-row gap-2">
+      <div className="mx-auto w-fit flex flex-col md:flex-row gap-6">
         {espece.cousins.length > 0 && (
           <div>
-            <h4 className="important text-xl font-semibold shadow-xl/50 shadow-(--accent)">
+            <h4 className="important text-xl font-semibold mb-3 shadow-(--accent)">
               Espèces cousines
             </h4>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {espece.cousins.map((e) => (
                 <p
                   key={e}
@@ -170,10 +163,10 @@ function FreeDetailedPage({ espece }: { espece: Dino }) {
         )}
         {espece.especes_inf.length > 0 && (
           <div>
-            <h4 className="important text-xl font-semibold">
+            <h4 className="important text-xl font-semibold mb-3">
               Espèces de rang inférieur
             </h4>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {espece.especes_inf.map((e) => (
                 <p
                   key={e}
@@ -187,39 +180,49 @@ function FreeDetailedPage({ espece }: { espece: Dino }) {
         )}
         {espece.clades.length > 0 && (
           <div>
-            <h4 className="important text-xl font-semibold">Clades</h4>
-            <div className="grid grid-cols-3">
+            <h4 className="important text-xl font-semibold mb-3">Clades</h4>
+            <div className="grid grid-cols-2 gap-2">
               {espece.clades.map((e) => (
-                <p key={e}>{e}</p>
+                <p key={e} className="bg-gray-500/75 rounded-xl p-2 text-center">{e}</p>
               ))}
             </div>
           </div>
         )}
       </div>
       <Separator />
-      <table className="mx-auto">
-        <tbody>
-          <TableRow data={espece.embranchement} nom="Embranchement" />
-          <TableRow data={espece.sous_embranchement} nom="Sous embranchement" />
-          <TableRow data={espece.super_classe} nom="Super classe" />
-          <TableRow data={espece.classe} nom="Classe" />
-          <TableRow data={espece.sous_classe} nom="Sous classe" />
-          <TableRow data={espece.infra_classe} nom="Infra classe" />
-          <TableRow data={espece.super_ordre} nom="Super ordre" />
-          <TableRow data={espece.ordre} nom="Ordre" />
-          <TableRow data={espece.sous_ordre} nom="Sous ordre" />
-          <TableRow data={espece.infra_ordre} nom="Infra ordre" />
-          <TableRow data={espece.micro_ordre} nom="Micro ordre" />
-          <TableRow data={espece.super_famille} nom="Super famille" />
-          <TableRow data={espece.famille} nom="Famille " />
-          <TableRow data={espece.sous_famille} nom="Sous famille" />
-          <TableRow data={espece.tribu} nom="Tribu" />
-          <TableRow data={espece.genre} nom="Genre" />
-          <TableRow data={espece.categorie} nom="Catégorie" />
-        </tbody>
-      </table>
-      <Separator />
-      <div className="w-full md:w-1/2">{espece.description}</div>
+      <div className="w-full md:w-4/5 mx-auto backdrop-blur-sm backdrop-brightness-50 p-4 rounded-2xl border-2 border-gray-500">
+        <table className="w-full">
+          <tbody>
+            <TableRow data={espece.annee_decouv} nom="Découverte" />
+            <TableRow data={espece.etymologie} nom="Etymologie" />
+            <TableRow data="Animalia" nom="Règne" />
+            <TableRow data={espece.categorie.includes("Dino") ? "Dinosaure" : "Reptile"} nom="Type" />
+            <TableRow data={espece.embranchement} nom="Embranchement" />
+            <TableRow data={espece.sous_embranchement} nom="Sous embranchement" />
+            <TableRow data={espece.super_classe} nom="Super classe" />
+            <TableRow data={espece.classe} nom="Classe" />
+            <TableRow data={espece.sous_classe} nom="Sous classe" />
+            <TableRow data={espece.infra_classe} nom="Infra classe" />
+            <TableRow data={espece.super_ordre} nom="Super ordre" />
+            <TableRow data={espece.ordre} nom="Ordre" />
+            <TableRow data={espece.sous_ordre} nom="Sous ordre" />
+            <TableRow data={espece.infra_ordre} nom="Infra ordre" />
+            <TableRow data={espece.micro_ordre} nom="Micro ordre" />
+            <TableRow data={espece.super_famille} nom="Super famille" />
+            <TableRow data={espece.famille} nom="Famille " />
+            <TableRow data={espece.sous_famille} nom="Sous famille" />
+            <TableRow data={espece.tribu} nom="Tribu" />
+            <TableRow data={espece.genre} nom="Genre" />
+            <TableRow data={espece.categorie} nom="Catégorie" />
+          </tbody>
+        </table>
+      </div>
+      {espece.description && (
+        <>
+          <Separator />
+          <div className="w-full md:w-1/2">{espece.description}</div>
+        </>
+      )}
     </div>
   );
 }

@@ -12,7 +12,10 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background: url("/background.jpg") center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--foreground);
   font-family: var(--font-montserrat);
 }
