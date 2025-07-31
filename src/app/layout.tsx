@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className} ${montserratAlternates.variable} antialiased w-full p-2`}
       >
-        <header className="w-full flex justify-around">
+        <header className="w-full flex justify-around mb-2">
           <Link href="/" className="important text-3xl">
             DinoDex
           </Link>
