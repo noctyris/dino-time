@@ -8,6 +8,7 @@ import Loading from "@/ui/loading";
 
 export default function Page() {
   const { id } = useParams();
+  const callbackUrl = `/espece/${id}`;
   const [espece, setEspece] = useState<Dino>(createEmptyDino());
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState("");
@@ -53,6 +54,7 @@ export default function Page() {
           espece={espece}
           setEspece={setEspece}
           handleSubmit={handleSubmit}
+          callbackUrl={callbackUrl}
         />
       ) : (
         !error && <Loading />
@@ -70,10 +72,12 @@ function Form({
   espece,
   setEspece,
   handleSubmit,
+  callbackUrl
 }: {
   espece: Dino;
   setEspece: Dispatch<SetStateAction<Dino>>;
   handleSubmit: (e: React.FormEvent) => void;
+  callbackUrl: string;
 }) {
   const handleChange = (key: keyof Dino, value: string) => {
     setEspece((prev) => ({ ...prev!, [key]: value }));
@@ -238,6 +242,7 @@ function Form({
           </button>
         </div>
 
+        <input type="hidden" name="redirectTo" value={callbackUrl} />
         <input
           type="submit"
           className="hover:underline"
