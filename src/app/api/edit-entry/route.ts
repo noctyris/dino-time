@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
     clades,
     categorie,
     description,
+    image,
   } = data;
 
   try {
@@ -78,7 +79,8 @@ export async function POST(req: NextRequest) {
         genre = ${genre},
         clades = ${clades},
         categorie = ${categorie},
-        description = ${description}
+        description = ${description},
+        image = ${image}
       WHERE id = ${id}
     `;
 
