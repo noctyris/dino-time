@@ -40,7 +40,7 @@ export default function Page() {
     <>
       <button
         type="button"
-        className={`fixed bottom-0 right-0 p-2 m-2 rounded-full ${tableView ? "bg-(--accent)" : "bg-transparent"}`}
+        className={`z-40 fixed bottom-0 right-0 p-2 m-2 rounded-full ${tableView ? "bg-(--accent)" : "bg-transparent"}`}
         onClick={() => setTableView(!tableView)}
       >
         {espece && <TableIcon />}
