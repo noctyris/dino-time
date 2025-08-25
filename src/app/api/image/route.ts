@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const imgRes = await fetch(url)
     if (!imgRes.ok) throw new Error('Image not found')
 
-    const contentType = imgRes.headers.get('content-type') || 'image/jpeg'
+    const contentType = imgRes.headers.get('content-type') || 'image/png'
     const imgBuffer = await imgRes.arrayBuffer()
 
     return new Response(imgBuffer, {
