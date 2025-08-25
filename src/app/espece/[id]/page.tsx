@@ -22,7 +22,7 @@ export default function Page() {
   const { id } = useParams();
   const [espece, setEspece] = useState<Dino | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [tableView, setTableView] = useState<boolean>(false);
+  const [tableView, setTableView] = useState<boolean>(true);
 
   useEffect(() => {
     if (!id) return;
