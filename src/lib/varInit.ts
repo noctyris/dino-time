@@ -34,7 +34,8 @@ export function createEmptyDino(): Dino {
     clades: [],
     categorie: '',
     description: '',
-    image: ''
+    image: '',
+    img_squelette: '',
   };
 }
 

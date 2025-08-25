@@ -61,14 +61,14 @@ export default function Page() {
           "etymologie", "embranchement", "sous_embranchement",
           "super_classe", "classe", "sous_classe", "infra_classe",
           "super_ordre", "ordre", "sous_ordre", "infra_ordre", "micro_ordre",
-          "super_famille", "famille", "sous_famille", "tribu", "genre", "image"
+          "super_famille", "famille", "sous_famille", "tribu", "genre", "image", "img_squelette",
         ].map((key) => (
           <div key={key} className="flex justify-between">
             <label htmlFor={key}>{labels[key as keyof Dino]}</label>
             <input
               id={key}
               className="border-b"
-              type={key==="image" ? "url" : "text"}
+              type={["image", "img_squelette"].includes(key) ? "url" : "text"}
               required={["nom", "hauteur", "longueur", "poids", "region", "periode_debut", "periode_fin", "regime", "annee_decouv", "etymologie", "image"].includes(key)}
               value={espece[key as keyof Dino] as string}
               onChange={(e) => handleChange(key as keyof Dino, e.target.value)}

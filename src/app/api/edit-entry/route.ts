@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
     categorie,
     description,
     image,
+    img_squelette,
   } = data;
 
   try {
@@ -80,7 +81,8 @@ export async function POST(req: NextRequest) {
         clades = ${clades},
         categorie = ${categorie},
         description = ${description},
-        image = ${image}
+        image = ${image},
+        img_squelette = ${img_squelette}
       WHERE id = ${id}
     `;
 
