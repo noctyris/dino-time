@@ -64,7 +64,7 @@ function TableDetailedPage({ espece }: { espece: Dino }) {
   const longueur = formatData(espece.longueur);
   const hauteur = formatData(espece.hauteur);
   const imageUrl = `/api/image?url=${encodeURIComponent(espece.image)}`;
-  const squeletteUrl = `/api/image?url=${encodeURIComponent(espece.img_squelette}`;
+  const squeletteUrl = `/api/image?url=${encodeURIComponent(espece.img_squelette)}`;
 
   return (
     <div className="p-2">
@@ -129,6 +129,7 @@ function FreeDetailedPage({ espece }: { espece: Dino }) {
   const longueur = formatData(espece.longueur);
   const hauteur = formatData(espece.hauteur);
   const imageUrl = `/api/image?url=${encodeURIComponent(espece.image)}`;
+  const squeletteUrl = `/api/image?url=${encodeURIComponent(espece.img_squelette)}`;
 
   return (
     <div className="p-2">
