@@ -64,11 +64,13 @@ function TableDetailedPage({ espece }: { espece: Dino }) {
   const longueur = formatData(espece.longueur);
   const hauteur = formatData(espece.hauteur);
   const imageUrl = `/api/image?url=${encodeURIComponent(espece.image)}`;
+  const squeletteUrl = `/api/image?url=${encodeURIComponent(espece.img_squelette}`;
 
   return (
     <div className="p-2">
       <h2 className="text-2xl important">{espece.nom}</h2>
       <Image src={imageUrl} alt={`Image de {espece.nom}`} height={500} width={500} className="mx-auto" />
+      <Image src={squeletteUrl} alt={`Image de squelette de ${espece.nom} height={500} with={500} className="mx-auto" />
       <div className="mx-auto w-full md:w-4/5 backdrop-blur-sm backdrop-brightness-50 p-4 rounded-2xl border-2 border-gray-500">
       <table>
         <tbody>
@@ -132,6 +134,7 @@ function FreeDetailedPage({ espece }: { espece: Dino }) {
     <div className="p-2">
       <h2 className="text-2xl important">{espece.nom}</h2>
       <Image src={imageUrl} alt={`Image de {espece.nom}`} height={500} width={500} className="mx-auto" />
+      <Image src={squeletteUrl} alt={`Image de squelette de ${espece.nom} height={500}
       <div className="grid grid-cols-1 md:grid-cols-3 w-full md:w-4/5 items-center justify-center gap-2 my-3 mx-auto">
         <DataCard icon={<MassIcon />} data={poids} />
         <DataCard icon={<HeightIcon />} data={hauteur} />
